@@ -10,7 +10,7 @@ This is a simple web application powered by *AngularJS* to understand the basics
 
 The following libraries are used in the application.
 
-*[D3.js](https://d3js.org/): D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS.
+*[D3.js](https://d3js.org/)*: D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS.
 
 *[AngularJS](https://angularjs.org/)*: *AngularJS* is an open-source web application framework to address many of the challenges encountered in developing *Single Page Applications*.
 
