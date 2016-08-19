@@ -6,7 +6,7 @@ define(["d3"], function(d3) {
     }
 
     var multipleScaterplot = {
-        callback: function(data) {
+        callback: function(data, exampleConfig) {
           var width = 300,
               size = 150,
               padding = 20;
@@ -30,7 +30,14 @@ define(["d3"], function(d3) {
           var color = d3.scale.category10();
 
           var domainByTrait = {},
-              traits = d3.keys(data[0]).filter(function(d) { return d !== "type" && d !== "level"; }),
+              traits = d3.keys(data[0]).filter(function(d) {
+                  for (var idListIndex = 0; idListIndex < exampleConfig.nominalValue.idList.length; idListIndex = idListIndex + 1) {
+                      if (exampleConfig.nominalValue.idList[idListIndex] === d) {
+                          return false;
+                      }
+                  }
+                  return true;
+              }),
               n = traits.length;
 
           traits.forEach(function(trait) {
@@ -93,7 +100,7 @@ define(["d3"], function(d3) {
               .attr("cx", function(d) { return x(d[p.x]); })
               .attr("cy", function(d) { return y(d[p.y]); })
               .attr("r", 4)
-              .style("fill", function(d) { return color(d.level);});
+              .style("fill", function(d) { return color(d[exampleConfig.nominalValue.idToShow]);});
           }
         }
     };

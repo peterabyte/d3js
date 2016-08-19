@@ -13,7 +13,7 @@ define(["jquery", "config"], function($, config) {
                 timeout: 2500
             }).done(function(data) {
                 $("#example-loading").addClass("visually-hidden");
-                e.callback(data);
+                e.callback(data, e);
             }).fail(function() {
                 $("#example-loading").addClass("visually-hidden");
                 $("#example-failed").removeClass("visually-hidden");

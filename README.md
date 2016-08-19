@@ -1,14 +1,16 @@
-# Angular Example
+# D3.js Example
 
 ## Overview
 
-This is a simple **AngularJS Example** to understand the basics of *AngularJS*.
+This is a simple web application powered by *AngularJS* to understand the basics of *D3.js*.
 
 ## Dependencies
 
 ### Runtime dependencies
 
 The following libraries are used in the application.
+
+*[D3.js](https://d3js.org/): D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS.
 
 *[AngularJS](https://angularjs.org/)*: *AngularJS* is an open-source web application framework to address many of the challenges encountered in developing *Single Page Applications*.
 

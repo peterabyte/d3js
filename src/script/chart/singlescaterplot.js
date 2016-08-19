@@ -6,32 +6,25 @@ define(["d3"], function(d3) {
     }
 
     var multipleScaterplot = {
-        callback: function(data) {
+        callback: function(data, exampleConfig) {
             var margin = {top: 20, right: 30, bottom: 30, left: 40},
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
-            /*
-             * value accessor - returns the value to encode for a given data object.
-             * scale - maps value to a visual display encoding, such as a pixel position.
-             * map function - maps from data value to display value
-             * axis - sets up axis
-             */
-
             // setup x
-            var xValue = function(d) { return d.attack;}, // data -> value
+            var xValue = function(d) { return d[exampleConfig.xValue.id];}, // data -> value
                 xScale = d3.scale.linear().range([0, width]), // value -> display
                 xMap = function(d) { return xScale(xValue(d));}, // data -> display
                 xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(6).tickSize(-1 * height);
 
             // setup y
-            var yValue = function(d) { return d.defense;}, // data -> value
+            var yValue = function(d) { return d[exampleConfig.yValue.id];}, // data -> value
                 yScale = d3.scale.linear().range([height, 0]), // value -> display
                 yMap = function(d) { return yScale(yValue(d));}, // data -> display
                 yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(6).tickSize(-1 * width);
 
             // setup fill color
-            var cValue = function(d) { return d.level;},
+            var cValue = function(d) { return d[exampleConfig.nominalValue.id];},
                 color = d3.scale.category10();
 
             // add the graph canvas to the body of the webpage
@@ -60,7 +53,7 @@ define(["d3"], function(d3) {
               .attr("x", width)
               .attr("y", -6)
               .style("text-anchor", "end")
-              .text("attack");
+              .text(exampleConfig.xValue.name);
 
             // y-axis
             svg.append("g")
@@ -72,7 +65,7 @@ define(["d3"], function(d3) {
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text("defense");
+              .text(exampleConfig.yValue.name);
 
             // draw dots
             svg.selectAll(".dot")

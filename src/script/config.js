@@ -17,14 +17,37 @@ define(
                 name: "Multiple Scaterplot",
                 description: "",
                 dataUrl: "/src/data/robots.json",
-                callback: multipleScaterplot.callback
+                callback: multipleScaterplot.callback,
+                xValue: {
+                    id: 'attack',
+                    name: 'Attack'
+                },
+                yValue: {
+                    id: 'defense',
+                    name: 'Defense'
+                },
+                nominalValue: {
+                    idList: ['type', 'level'],
+                    idToShow: 'level'
+                }
             },
             {
                 id: "single-scaterplot",
                 name: "Single Scaterplot",
                 description: "",
                 dataUrl: "/src/data/robots.json",
-                callback: singleScaterplot.callback
+                callback: singleScaterplot.callback,
+                xValue: {
+                    id: 'attack',
+                    name: 'Attack'
+                },
+                yValue: {
+                    id: 'defense',
+                    name: 'Defense'
+                },
+                nominalValue: {
+                    id: 'level'
+                }
             }
         ]
     };
