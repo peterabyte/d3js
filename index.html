@@ -1,19 +1,63 @@
 <!DOCTYPE html>
-<html class="no-js" ng-controller="BasePageCtrl">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <title ng-bind="'D3.js Example - ' + title">D3.js Example</title>
+    <title>peterabyte</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="src/css/main.css" />
+     
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+    <link href="src/css/main.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha256-fTuUgtT7O2rqoImwjrhDgbXTKUwyxxujIMRIK7TbuNU=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" integrity="sha256-dsOXGNHAo/syFnazt+KTBsCQeRmlcW1XKL0bCK4Baec=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="/">D3js</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerMenu" aria-controls="headerMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="headerMenu">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="https://github.com/peterabyte/d3js"><span class="fab fa-github"></span> GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<script type="text/javascript" src="libs/requirejs/require.js" data-main="src/script/requireConfig.js"></script>
+    <div class="container-fluid">
+    	<div class="row">
+        	<div class="col">
+        		<h3>
+        			<i class="fas fa-chart-line"></i> Chart
+	        		<div id="chartSelector" class="dropdown d-inline-block">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select...</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<button class="dropdown-item" type="button" data-example="single-scaterplot">Single Scaterplot</button>
+							<button class="dropdown-item" type="button" data-example="multiple-scaterplot">Multiple Scaterplot</button>
+						</div>
+					</div>
+        		</h3>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col">
+        		<div><b><span id="chartName"></span></b></div>
+        		<div id="chartContent"></div>
+        	</div>
+        </div>
+    </div>
 
-<div ng-include="'src/view/template/header.html'" ng-controller="HeaderHelperCtrl" class="main-container"></div>
-<div ng-view class="main-container"></div>
-<div ng-include="'src/view/template/footer.html'" ng-controller="FooterHelperCtrl" class="main-container"></div>
-
+	<script src="src/script/util.js"></script>
+    <script src="src/script/chart/singlescaterplot.js"></script>
+    <script src="src/script/chart/multiplescaterplot.js"></script>
+    <script src="src/script/data.js"></script>
+    <script src="src/script/main.js"></script>
 </body>
+
 </html>

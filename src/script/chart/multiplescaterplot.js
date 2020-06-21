@@ -1,12 +1,6 @@
-define(["d3"], function(d3) {
-    function cross(a, b) {
-      var c = [], n = a.length, m = b.length, i, j;
-      for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
-      return c;
-    }
-
+(function() {
     var multipleScaterplot = {
-        callback: function(data, exampleConfig) {
+        render: function(target, data, config) {
           var width = 300,
               size = 150,
               padding = 20;
@@ -31,8 +25,8 @@ define(["d3"], function(d3) {
 
           var domainByTrait = {},
               traits = d3.keys(data[0]).filter(function(d) {
-                  for (var idListIndex = 0; idListIndex < exampleConfig.nominalValue.idList.length; idListIndex = idListIndex + 1) {
-                      if (exampleConfig.nominalValue.idList[idListIndex] === d) {
+                  for (var idListIndex = 0; idListIndex < config.nominalValue.idList.length; idListIndex = idListIndex + 1) {
+                      if (config.nominalValue.idList[idListIndex] === d) {
                           return false;
                       }
                   }
@@ -47,7 +41,7 @@ define(["d3"], function(d3) {
           xAxis.tickSize(size * n);
           yAxis.tickSize(-size * n);
 
-          var svg = d3.select("#example-content").append("svg")
+          var svg = d3.select(target).append("svg")
           .attr("width", size * n + 4 * padding)
           .attr("height", size * n + 4 * padding)
           .append("g")
@@ -68,7 +62,7 @@ define(["d3"], function(d3) {
             .each(function(d) { y.domain(domainByTrait[d]); d3.select(this).call(yAxis); });
 
           var cell = svg.selectAll(".cell")
-          .data(cross(traits, traits))
+          .data(window.util.cross(traits, traits))
           .enter().append("g")
           .attr("class", "cell")
           .attr("transform", function(d) { return "translate(" + (n - d.i - 1) * size + "," + d.j * size + ")"; })
@@ -100,10 +94,10 @@ define(["d3"], function(d3) {
               .attr("cx", function(d) { return x(d[p.x]); })
               .attr("cy", function(d) { return y(d[p.y]); })
               .attr("r", 4)
-              .style("fill", function(d) { return color(d[exampleConfig.nominalValue.idToShow]);});
+              .style("fill", function(d) { return color(d[config.nominalValue.idToShow]);});
           }
         }
     };
 
-    return multipleScaterplot;
-});
+    window.multipleScaterplot = multipleScaterplot;
+})();

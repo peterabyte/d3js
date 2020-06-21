@@ -1,34 +1,28 @@
-define(["d3"], function(d3) {
-    function cross(a, b) {
-      var c = [], n = a.length, m = b.length, i, j;
-      for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
-      return c;
-    }
-
-    var multipleScaterplot = {
-        callback: function(data, exampleConfig) {
-            var margin = {top: 20, right: 30, bottom: 30, left: 40},
+(function() {
+    var singleScaterplot = {
+        render: function(target, data, config) {
+            var margin = {top: 20, right: 40, bottom: 40, left: 40},
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
             // setup x
-            var xValue = function(d) { return d[exampleConfig.xValue.id];}, // data -> value
+            var xValue = function(d) { return d[config.xValue.id];}, // data -> value
                 xScale = d3.scale.linear().range([0, width]), // value -> display
                 xMap = function(d) { return xScale(xValue(d));}, // data -> display
                 xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(6).tickSize(-1 * height);
 
             // setup y
-            var yValue = function(d) { return d[exampleConfig.yValue.id];}, // data -> value
+            var yValue = function(d) { return d[config.yValue.id];}, // data -> value
                 yScale = d3.scale.linear().range([height, 0]), // value -> display
                 yMap = function(d) { return yScale(yValue(d));}, // data -> display
                 yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(6).tickSize(-1 * width);
 
             // setup fill color
-            var cValue = function(d) { return d[exampleConfig.nominalValue.id];},
+            var cValue = function(d) { return d[config.nominalValue.id];},
                 color = d3.scale.category10();
 
             // add the graph canvas to the body of the webpage
-            var svg = d3.select("#example-content").append("svg")
+            var svg = d3.select(target).append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
               .append("g")
@@ -53,7 +47,7 @@ define(["d3"], function(d3) {
               .attr("x", width)
               .attr("y", -6)
               .style("text-anchor", "end")
-              .text(exampleConfig.xValue.name);
+              .text(config.xValue.name);
 
             // y-axis
             svg.append("g")
@@ -65,7 +59,7 @@ define(["d3"], function(d3) {
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text(exampleConfig.yValue.name);
+              .text(config.yValue.name);
 
             // draw dots
             svg.selectAll(".dot")
@@ -114,5 +108,5 @@ define(["d3"], function(d3) {
         }
     };
 
-    return multipleScaterplot;
-});
+    window.singleScaterplot = singleScaterplot;
+})();
